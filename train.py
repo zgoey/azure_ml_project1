@@ -50,7 +50,7 @@ def main():
     url = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
     ds = TabularDatasetFactory.from_delimited_files(url)
 
-    # Spearate features and target
+    # Separate features and target
     x, y = clean_data(ds)
 
     # Split data into train and test sets.
