@@ -9,7 +9,6 @@ from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
-run = Run.get_context()
 
 def clean_data(data):
     # Dict for cleaning data
@@ -58,6 +57,7 @@ def main():
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
     # Setup the run
+    run = Run.get_context()
     run.log("Regularization Strength:", np.float(args.C))
     run.log("Max iterations:", np.int(args.max_iter))
 
