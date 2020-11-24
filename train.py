@@ -70,7 +70,7 @@ def main():
     
     # Save model
     os.makedirs('outputs', exist_ok=True)
-    joblib.dump(model, 'outputs/model.lib')
+    joblib.dump(model, 'outputs/model.pkl')
 
 if __name__ == '__main__':
     main()
