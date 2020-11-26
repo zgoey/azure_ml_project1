@@ -15,7 +15,7 @@ The Hyperdrive/Scikit-learn approach uses a logistic regression classifier, wher
 1. regularization strength
 2. maximum number of iterations 
 
-The dataset is first preprocessed by applying one-hot-encoding to the features "job", "contact" and "education" and simple encoding to other string-valued features, writing ones for true-like and zeros for false-like expression, respectively. It is then divided in a train and test set using a 80-20 split.
+The dataset is first preprocessed by applying one-hot-encoding to the features "job", "contact" and "education" and label encoding to the other string-valued features. It is then divided in a train and test set using a 80-20 split.
 
 We use a lognormal parameter sampler for the regularization strength with a range between -5 and 3, which seems appropriate since we are more interested in varying the order of magnitude of this parameter as opposed to varying its magnitude itself.  For the maximum number of iterations we use a choice sampler that picks values from the set {50, 100, 500, 1000, 5000, 10000}. The choice sampler has the advantage that we can explicitly specify each of the values that we are interested in.
 
