@@ -6,7 +6,7 @@ In this project, we build and optimize an Azure ML pipeline using the Python SDK
 This model is then compared to an Azure AutoML run.
 
 ## Summary
-The dataset that we are investigating contains information about the success of direct marketing in a banking context. Based on various background characteristics, we seek to predict whether a client is susceptible to subscribe to a long term deposit (see also https://archive.ics.uci.edu/ml/datasets/bank+marketing).
+The dataset that we are investigating contains information about the success of direct marketing in a banking context. Based on various background characteristics, we seek to predict whether a client is susceptible to subscribe to a long term deposit (see also https://archive.ics.uci.edu/ml/datasets/bank+marketing and https://core.ac.uk/download/pdf/55631291.pdf).
 
 The best performing model we have found for this problem using the aforementioned Scitkit-learn and AutoML approaches is a logistic regression model with a regularization strength of 1.7341 and a maximum of 5000 iterations. This model attains an accuracy of 91.97%.
 
