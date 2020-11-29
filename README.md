@@ -25,7 +25,7 @@ The benefit of using this sampler is that we can explicitly specify each of the 
 
 Using the aforementioned samplers and sampling ranges, we generate 100 hyperparameter combinations that are compared on their resulting classification accuracies on the test set.
 
-To keep the computational burden in check, the hyperdrive run is configured with an early stopping policy called **bandit policy**, which uses an evaluation interval of 100 and a slack factor of 0.1. Runs that do not achieve at least 90% of the best accuracy found so far after 100 iterations are cancelled by this policy. Th benefit of this is a more efficient usage of resourced: the porceeing units are put to good use and are not wasting their time on computations that do not lead to a significant progress in achieving better accuracies.
+To keep the computational burden in check, the hyperdrive run is configured with an early stopping policy called **bandit policy**, which uses an evaluation interval of 100 and a slack factor of 0.1. Runs that after 100 iterations need more than a 10% improvement to reach the current best accuracy are cancelled by this policy. The benefit of this is a more efficient usage of resourced: the porceeing units are put to good use and are not wasting their time on computations that do not lead to a significant progress in achieving better accuracies.
 
 The notebook udacity-project.ipynb shows the output of a hyperparameter run that results in a model with an accuracy of 91.75% using a regularization strength of 4.4190 and a maximum of 100 iterations.
 
