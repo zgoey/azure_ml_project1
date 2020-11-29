@@ -33,9 +33,9 @@ The logistic regression model used in the Scikit-learn pipeline is much simpler 
 - AutoML does not necessarily the hyperparameter space in the way we specified for the Scikit-learn pipeline, 
 - AutoML as used in our notebook assesses accuracy by applying a 5-fold cross validation as opposed to the simple train-test split applied in the Scikit-learn pipeline.
 
-Of course, the slightly lower accuracy and increased model complexity is countered by the fact that AutoML really is fully automatic. It does not require the specification of a model architecture and it also handles the choice of hyperparameters by itself.
+Of course, the slightly lower accuracy and increased model complexity is countered by the fact that AutoML really is fully automatic. It does not require the specification of a model architecture, and it also handles the choice of hyperparameters by itself.
 
 
 ## Future work
-The maximum number of runs in the hyperparameter sampling step of the Scikit-learn pipeline can be increased to consider more hyperparameter combinations, which could improve the accuracy even further. To get a more stable accuracy estimate, 5-fold cross validation could also be applied in the Scikit-learn  pipeline, as it is in AutoML. The AutoML pipeline itself can be enhanced by enabling deep neural networks, which also could benefit the achieved accuracy.
+The maximum number of runs in the hyperparameter sampling step of the Scikit-learn pipeline can be increased to consider more hyperparameter combinations, which could improve the accuracy even further. To get a more stable accuracy estimate, 5-fold cross validation could also be applied in the Scikit-learn  pipeline, as it is in AutoML. The AutoML pipeline itself can be enhanced by enabling deep neural networks, which also could also lead to an increase in the achieved accuracy.
 
