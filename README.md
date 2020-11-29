@@ -8,7 +8,7 @@ This model is then compared to an Azure AutoML run.
 ## Summary
 The dataset that we are investigating contains information about the success of direct marketing in a banking context. Based on various background characteristics, we seek to predict whether a client is susceptible to subscribe to a long term deposit (see also https://archive.ics.uci.edu/ml/datasets/bank+marketing and https://core.ac.uk/download/pdf/55631291.pdf).
 
-The best performing model we have found for this problem using the aforementioned Scitkit-learn and AutoML approaches is a logistic regression model with a regularization strength of 1.7341 and a maximum of 5000 iterations. This model attains an accuracy of 91.97%.
+The best performing model we have found for this problem using the aforementioned approaches is a logistic regression model that was trained  with a regularization strength of 4.4190 and a maximum of 100 iterations. This model attains an accuracy of 91.75%.
 
 ## Scikit-learn Pipeline
 The Hyperdrive/Scikit-learn approach uses a logistic regression classifier, where hyperparameter tuning is applied to two hyperparameters:
@@ -17,7 +17,7 @@ The Hyperdrive/Scikit-learn approach uses a logistic regression classifier, wher
 
 The dataset is first preprocessed by applying one-hot-encoding to the features "job", "contact" and "education" and label encoding to the other string-valued features. It is then divided in a train and test set using a 80-20 split.
 
-We use a lognormal parameter sampler for the regularization strength with a range between -3 and 3, which seems appropriate since we wish to vary the order of magnitude of this parameter rather than varying between the values on a finer scale.  For the maximum number of iterations, we use a choice sampler that picks values from the set {50, 100, 500, 1000, 5000, 10000}. This has the advantage that we can explicitly specify each of the values that we are interested in. Using the aforementioned samplers and sampling ranges, we generate 100 hyperparameter combinations that are compared on their resulting classification accuracies.
+We use a lognormal parameter sampler for the regularization strength with a range between -3 and 3, which seems appropriate since we wish to vary the order of magnitude of this hyperparameter rather than varying between the values on a finer scale.  For the maximum number of iterations, we use a choice sampler that picks values from the set {50, 100, 500, 1000, 5000, 10000}. This has the advantage that we can explicitly specify each of the values that we are interested in. Using the aforementioned samplers and sampling ranges, we generate 100 hyperparameter combinations that are compared on their resulting classification accuracies.
 
 We furthermore apply a bandit policy with an evaluation interval of 100 and a slack factor of 0.1, to ensure that we do not unnecessarily use our computing resources without making a significant progress in achieving better accuracies.
 
@@ -33,9 +33,9 @@ The logistic regression model used in the Scikit-learn pipeline is much simpler 
 - AutoML does not necessarily the hyperparameter space in the way we specified for the Scikit-learn pipeline, 
 - AutoML as used in our notebook assesses accuracy by applying a 5-fold cross validation as opposed to the simple train-test split applied in the Scikit-learn pipeline.
 
-Of course, the slightly lower accuracy and increased model complexity is countered by the fact that AutoML really is truly automatic. It does not require the specification of a model architecture and it also handles the choice of hyperparameters by itself.
+Of course, the slightly lower accuracy and increased model complexity is countered by the fact that AutoML really is fully automatic. It does not require the specification of a model architecture and it also handles the choice of hyperparameters by itself.
 
 
 ## Future work
-The maximum number of runs in the hyperparameter sampling step of the Scikit-learn pipeline can be increased to consider even more hyperparameter combinations, which could improve the accuracy even further. In addition to this, the AutoML experiment can be configured to enable deep neural networks, allowing more models to be considered, which also could benefit the achieved accuracy.
+The maximum number of runs in the hyperparameter sampling step of the Scikit-learn pipeline can be increased to consider more hyperparameter combinations, which could improve the accuracy even further. To get a more stable accuracy estimate, 5-fold cross validation could also be applied in the Scikit-learn  pipeline, as it is in AutoML. The AutoML pipeline itself can be enhanced by enabling deep neural networks, which also could benefit the achieved accuracy.
 
