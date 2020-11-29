@@ -15,11 +15,17 @@ The Hyperdrive/Scikit-learn approach uses a logistic regression classifier, wher
 1. regularization strength
 2. maximum number of iterations 
 
-The dataset is first preprocessed by applying one-hot-encoding to the features "job", "contact" and "education" and label encoding to the other string-valued features. It is then divided in a train and test set using a 80-20 split.
+The dataset is first preprocessed by applying one-hot-encoding to the features "job", "contact" and "education" and label encoding to the other string-valued features. It is then divided in a train and test set using a 80-20 split. 
 
-We use a lognormal parameter sampler for the regularization strength with a range between -3 and 3, which seems appropriate since we wish to vary the order of magnitude of this hyperparameter rather than varying between the values on a finer scale.  For the maximum number of iterations, we use a choice sampler that picks values from the set {50, 100, 500, 1000, 5000, 10000}. This has the advantage that we can explicitly specify each of the values that we are interested in. Using the aforementioned samplers and sampling ranges, we generate 100 hyperparameter combinations that are compared on their resulting classification accuracies.
+We use separate parameter samplers for each of the hyperparameters to be optimized:
+- a lognormal parameter sampler for the regularization strength with a range between -3 and 3 <br/>
+The benefit of this type of parametersampler is that it enables us to uniformly sample the log of the regularization strength  instead of its sampling raw value.  This means that we can vary the order of magnitude of the regularization strength, which makes sense, since variations on a finer scale would probably not have much effect.
+- a choice sampler for the maximum number of iterations that picks values from the set {50, 100, 500, 1000, 5000, 10000}  <br/>
+The benefit of using this sampler is that we can explicitly specify each of the values that we are interested in and only sample among those.
 
-We furthermore apply a bandit policy with an evaluation interval of 100 and a slack factor of 0.1, to ensure that we do not unnecessarily use our computing resources without making a significant progress in achieving better accuracies.
+Using the aforementioned samplers and sampling ranges, we generate 100 hyperparameter combinations that are compared on their resulting classification accuracies on the test set.
+
+To keep the computational burden in check, the hyperdrive run is configured with an early stopping policy called "bandit policy", which uses an evaluation interval of 100 and a slack factor of 0.1. Runs that do not achieve at least 90% of the best accuracy found so far after 100 iterations are cancelled by this policy. Th benefit of this is a more efficient usage of resourced: the porceeing units are put to good use and are not wasting their time on computations that do not lead to a significant progress in achieving better accuracies.
 
 The notebook udacity-project.ipynb shows the output of a hyperparameter run that results in a model with an accuracy of 91.75% using a regularization strength of 4.4190 and a maximum of 100 iterations.
 
