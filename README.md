@@ -12,8 +12,8 @@ The best performing model we have found for this problem using the aforementione
 
 ## Scikit-learn Pipeline
 The Hyperdrive/Scikit-learn approach uses a logistic regression classifier, where hyperparameter tuning is applied to two hyperparameters:
-1. **regularization strength**
-2. **maximum number of iterations**
+1. regularization strength
+2. maximum number of iterations
 
 The dataset is first preprocessed by applying one-hot-encoding to the features "job", "contact" and "education" and label encoding to the other string-valued features. It is then divided in a train and test set using a 80-20 split. 
 
