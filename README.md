@@ -17,8 +17,8 @@ The Hyperdrive/Scikit-learn approach uses a logistic regression classifier, wher
 The dataset is first preprocessed by applying one-hot-encoding to the features "job", "contact" and "education" and label encoding to the other string-valued features. It is then divided in a train and test set using a 80-20 split. 
 
 RandomParameterSampling is used to sample the hyperparameter space. This has the benefit of reaching a reasonable solution in relatively little time. This solution can then later be refined in a full grid search, which takes up more time. We use the following parameter sampling distributions for each of the hyperparameters to be optimized:
-- **loguniform parameter sampler** for the regularization strength with a range between -3 and 3 <br/>
-- **choice sampler** for the maximum number of iterations sampling from {50, 100, 500, 1000, 5000, 10000}  <br/>
+- a loguniform parameter sampler for the regularization strength with a range between -3 and 3 <br/>
+- a choice sampler for the maximum number of iterations sampling from {50, 100, 500, 1000, 5000, 10000}  <br/>
 
 Using the aforementioned samplers and sampling ranges, we generate 100 hyperparameter combinations that are compared on their resulting classification accuracies on the test set.
 
